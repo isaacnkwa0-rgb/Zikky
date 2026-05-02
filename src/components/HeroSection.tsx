@@ -117,34 +117,40 @@ export default function HeroSection({ slides: slidesProp }: { slides?: Slide[] }
         }}
       />
 
-      {/* ── Mobile: stacked, centred ── */}
-      <div className="md:hidden relative z-10 flex flex-col items-center text-center px-6 pt-8 pb-4">
-        <span
-          className="text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 text-white"
-          style={{ background: slide.labelBg, letterSpacing: '0.12em' }}
-        >
-          {slide.label}
-        </span>
-        <h1 className="text-2xl font-extrabold leading-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.12)' }}>
-          <span className="text-white">{slide.headlineMain}</span>
-          <span style={{ color: slide.accentColor }}>{slide.headlineAccent}</span>
-        </h1>
-        <p className="text-white/85 text-xs leading-relaxed mt-3 max-w-xs">
-          {slide.sub}
-        </p>
-        <div className="flex justify-center w-full">
+      {/* ── Mobile: side-by-side ── */}
+      <div className="md:hidden relative z-10 flex items-center overflow-hidden" style={{ minHeight: '200px' }}>
+        {/* Text */}
+        <div className="relative z-10 flex flex-col justify-center py-8 pl-5 pr-3" style={{ width: '58%' }}>
+          <span
+            className="self-start text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-3 text-white"
+            style={{ background: slide.labelBg, letterSpacing: '0.12em' }}
+          >
+            {slide.label}
+          </span>
+          <h1 className="text-lg font-extrabold leading-tight" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+            <span className="text-white">{slide.headlineMain}</span>
+            <span style={{ color: slide.accentColor }}>{slide.headlineAccent}</span>
+          </h1>
+          <p className="text-white/80 leading-relaxed mt-2" style={{ fontSize: '10px' }}>
+            {slide.sub}
+          </p>
           <HeroButton slide={slide} />
         </div>
 
-        <div className="relative w-full rounded-xl overflow-hidden mt-14" style={{ height: '200px' }}>
+        {/* Image */}
+        <div className="absolute right-0 top-0 bottom-0" style={{ width: '48%' }}>
           <Image
             src={slide.image}
             alt={slide.imageAlt}
             fill
             className="object-cover object-center"
-            sizes="100vw"
-            style={{ mixBlendMode: 'luminosity', opacity: 0.9 }}
+            sizes="48vw"
+            style={{ mixBlendMode: 'luminosity', opacity: 0.88 }}
             priority
+          />
+          <div
+            className="absolute inset-y-0 left-0 w-16 pointer-events-none"
+            style={{ background: `linear-gradient(to right, ${slide.fadeColor}, transparent)` }}
           />
         </div>
       </div>
