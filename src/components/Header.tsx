@@ -64,9 +64,9 @@ export default function Header() {
               placeholder="Search for products or brands…"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              className="flex-1 px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-gray-50"
+              className="flex-1 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-gray-50"
             />
-            <button type="submit" className="flex-shrink-0 px-3 py-2.5 text-white transition-colors" style={{ background: '#52BD4A' }}>
+            <button type="submit" className="flex-shrink-0 px-3 py-3 text-white transition-colors" style={{ background: '#52BD4A' }}>
               <Search size={16} />
             </button>
           </form>
@@ -133,9 +133,9 @@ export default function Header() {
               placeholder="Search products…"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              className="flex-1 px-3 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-transparent"
+              className="flex-1 px-3 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-transparent"
             />
-            <button type="submit" className="flex-shrink-0 px-3 py-2.5 text-white" style={{ background: '#52BD4A' }}>
+            <button type="submit" className="flex-shrink-0 px-3 py-3 text-white" style={{ background: '#52BD4A' }}>
               <Search size={15} />
             </button>
           </form>
