@@ -57,7 +57,7 @@ export default async function OrderConfirmationPage({ params }: { params: { id: 
               <Package size={16} /> Items Ordered
             </h2>
             <ul className="flex flex-col gap-4">
-              {order.items.map(item => (
+              {order.items.map((item: { id: number; image: string | null; name: string; quantity: number; price: number }) => (
                 <li key={item.id} className="flex gap-3 items-center">
                   <div className="w-12 h-12 rounded-lg bg-gray-50 overflow-hidden relative flex-shrink-0">
                     {item.image && <Image src={item.image} alt={item.name} fill className="object-cover" unoptimized />}
