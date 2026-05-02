@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model HeroSlide {
+  id             Int      @id @default(autoincrement())
+  label          String
+  headlineMain   String
+  headlineAccent String
+  sub            String
+  cta            String
+  href           String
+  bg             String
+  fadeColor      String
+  accentColor    String
+  labelBg        String
+  btnBg          String
+  btnHover       String
+  btnShadow      String
+  image          String
+  imageAlt       String
+  order          Int      @default(0)
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model PromoBanner {
+  id        Int      @id @default(autoincrement())
+  title     String
+  sub       String
+  href      String
+  image     String
+  cta       String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  slug      String    @unique
+  icon      String?
+  svgKey    String?
+  count     String    @default("0")
+  order     Int       @default(0)
+  active    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  reference String      @unique
+  email     String
+  name      String
+  phone     String
+  address   String
+  total     Int
+  status    String      @default("pending")
+  paidAt    DateTime?
+  items     OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        Int    @id @default(autoincrement())
+  orderId   Int
+  order     Order  @relation(fields: [orderId], references: [id])
+  productId Int?
+  name      String
+  price     Int
+  quantity  Int
+  image     String @default("")
+}
+
+model Product {
+  id            Int       @id @default(autoincrement())
+  name          String
+  slug          String    @unique
+  description   String    @default("")
+  price         Int
+  originalPrice Int?
+  image         String
+  images        String    @default("[]")
+  categoryId    Int?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  badge         String?
+  stock         Int       @default(0)
+  rating        Float     @default(0)
+  reviews       Int       @default(0)
+  featured      Boolean   @default(false)
+  active        Boolean   @default(true)
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}

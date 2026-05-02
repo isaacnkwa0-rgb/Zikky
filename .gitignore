@@ -1,0 +1,27 @@
+node_modules
+.next
+out
+
+# Environment variables
+.env
+.env.local
+.env*.local
+
+# Database files
+*.db
+*.db-journal
+
+# Prisma generated client
+/src/generated/prisma
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# Dev screenshots (not part of the app)
+zikky-*.png
+gadcet-*.png
+
+# Misc
+.playwright-mcp
+.DS_Store
+Thumbs.db
