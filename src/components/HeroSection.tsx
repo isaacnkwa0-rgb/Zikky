@@ -118,7 +118,7 @@ export default function HeroSection({ slides: slidesProp }: { slides?: Slide[] }
       />
 
       {/* ── Mobile: stacked, centred ── */}
-      <div className="md:hidden relative z-10 flex flex-col items-center text-center px-6 pt-8 pb-4">
+      <div className="md:hidden relative z-10 flex flex-col items-center text-center px-6 pt-10 pb-4">
         <span
           className="text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 text-white"
           style={{ background: slide.labelBg, letterSpacing: '0.12em' }}
