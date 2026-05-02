@@ -11,8 +11,8 @@ out
 *.db
 *.db-journal
 
-# Prisma generated client
-/src/generated/prisma
+# Prisma generated client (regenerated at build time via postinstall)
+# /src/generated/prisma
 
 # TypeScript build info
 tsconfig.tsbuildinfo
