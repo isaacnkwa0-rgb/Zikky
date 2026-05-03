@@ -19,7 +19,6 @@ export const authOptions: NextAuthOptions = {
         if (!adminEmail || !adminPassword) return null;
         if (credentials.email !== adminEmail) return null;
 
-        // Compare directly (plain env password) — hash on first run if desired
         const valid = credentials.password === adminPassword;
         if (!valid) return null;
 
