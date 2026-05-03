@@ -66,12 +66,18 @@ export default function BannersAdmin() {
 
   async function uploadImage(file: File) {
     setUploading(true);
-    const fd = new FormData();
-    fd.append('file', file);
-    const res = await fetch('/api/upload', { method: 'POST', body: fd });
-    const { url } = await res.json();
-    setForm(f => ({ ...f, image: url }));
-    setUploading(false);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      setForm(f => ({ ...f, image: data.url }));
+    } catch (err) {
+      alert('Upload failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
+    } finally {
+      setUploading(false);
+    }
   }
 
   function startEdit(b: Banner) {
