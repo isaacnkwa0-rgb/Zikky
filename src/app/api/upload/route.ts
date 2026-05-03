@@ -12,10 +12,15 @@ export async function POST(req: Request) {
   const file = form.get('file') as File | null;
   if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 });
 
-  const ext = path.extname(file.name) || '.jpg';
-  const filename = `uploads/${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
+  try {
+    const ext = path.extname(file.name) || '.jpg';
+    const filename = `uploads/${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
 
-  const blob = await put(filename, file, { access: 'public' });
+    const blob = await put(filename, file, { access: 'public' });
 
-  return NextResponse.json({ url: blob.url });
+    return NextResponse.json({ url: blob.url });
+  } catch (err) {
+    console.error('[UPLOAD ERROR]', err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }
