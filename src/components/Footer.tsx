@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={15} style={{ color: '#52BD4A', marginTop: '2px', flexShrink: 0 }} />
-                <span className="text-gray-600 font-medium">226 Oron Rd, Uyo, Akwa Ibom State</span>
+                <span className="text-gray-600 font-medium pb-2">226 Oron Rd, Uyo, Akwa Ibom State</span>
               </li>
             </ul>
 
