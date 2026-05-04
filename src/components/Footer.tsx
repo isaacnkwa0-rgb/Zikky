@@ -154,9 +154,6 @@ export default function Footer() {
             <span className="font-semibold" style={{ color: '#00C5DC' }}>Zikky Gadgets</span>
             {' '}— Nigerian Tech Marketplace. All Rights Reserved.
           </p>
-          <p className="text-xs text-gray-400">
-            Built with ❤️ in <span className="font-semibold" style={{ color: '#52BD4A' }}>Nigeria</span>
-          </p>
         </div>
       </div>
 
