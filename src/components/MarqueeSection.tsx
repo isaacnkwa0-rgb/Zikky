@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import AddToCartButton from './AddToCartButton';
 
 export interface MarqueeProduct {
@@ -23,6 +24,23 @@ interface Props {
 }
 
 export default function MarqueeSection({ title, products, viewAllHref = '/shop' }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = 160 + 12; // card width + gap
+    const id = setInterval(() => {
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft + cardWidth >= maxScroll) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        el.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }, 10000);
+    return () => clearInterval(id);
+  }, []);
+
   if (products.length === 0) return null;
 
   return (
@@ -36,7 +54,7 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
       </div>
 
       {/* Scrollable row */}
-      <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
+      <div ref={scrollRef} className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
         <div className="flex gap-3 px-4 md:px-6" style={{ width: 'max-content' }}>
           {products.map(product => (
             <Link
