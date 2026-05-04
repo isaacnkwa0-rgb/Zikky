@@ -110,7 +110,7 @@ export default function Footer() {
             </ul>
 
             {/* Social icons */}
-            <div className="flex items-center gap-3 mt-6">
+            <div className="flex items-center gap-3 mt-10">
               {socialLinks.map(({ label, href, path }) => (
                 <a
                   key={label}
