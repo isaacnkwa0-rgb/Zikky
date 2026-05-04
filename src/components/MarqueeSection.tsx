@@ -46,9 +46,9 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
   return (
     <section className="py-10 md:py-14">
       {/* Header */}
-      <div className="container-main flex items-center justify-between mb-5">
-        <h2 className="text-base md:text-lg font-bold text-gray-900 uppercase tracking-widest">{title}</h2>
-        <Link href={viewAllHref} className="text-xs font-semibold hover:underline" style={{ color: '#52BD4A' }}>
+      <div className="container-main flex flex-col items-center mb-5">
+        <h2 className="text-base md:text-lg font-bold text-gray-900 uppercase tracking-widest text-center">{title}</h2>
+        <Link href={viewAllHref} className="text-xs font-semibold hover:underline mt-1" style={{ color: '#52BD4A' }}>
           View all →
         </Link>
       </div>
