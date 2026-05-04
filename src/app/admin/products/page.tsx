@@ -69,7 +69,7 @@ export default function ProductsAdmin() {
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
 
   async function load() {
-    const [pRes, cRes] = await Promise.all([fetch('/api/products'), fetch('/api/categories')]);
+    const [pRes, cRes] = await Promise.all([fetch('/api/products?admin=1'), fetch('/api/categories')]);
     const [p, c] = await Promise.all([pRes.json(), cRes.json()]);
     setProducts(Array.isArray(p) ? p : []);
     setCategories(Array.isArray(c) ? c : []);
@@ -124,34 +124,44 @@ export default function ProductsAdmin() {
 
   async function save() {
     setSaving(true);
-    const extra = form.imageSlots.slice(1).filter(Boolean);
-    const payload = {
-      name: form.name.trim(),
-      slug: form.slug.trim() || slugify(form.name.trim()),
-      description: form.description.trim(),
-      price: parseInt(form.price) || 0,
-      originalPrice: form.originalPrice ? parseInt(form.originalPrice) : null,
-      image: form.imageSlots[0].trim(),
-      images: JSON.stringify(extra),
-      categoryId: form.categoryId ? parseInt(form.categoryId) : null,
-      badge: form.badge.trim() || null,
-      stock: parseInt(form.stock) || 0,
-      rating: parseFloat(form.rating) || 0,
-      reviews: parseInt(form.reviews) || 0,
-      featured: form.featured,
-    };
-    if (modal.editing) {
-      await fetch(`/api/products/${modal.editing.id}`, {
-        method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
-      });
-    } else {
-      await fetch('/api/products', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, active: true }),
-      });
+    try {
+      const extra = form.imageSlots.slice(1).filter(Boolean);
+      const payload = {
+        name: form.name.trim(),
+        slug: form.slug.trim() || slugify(form.name.trim()),
+        description: form.description.trim(),
+        price: parseInt(form.price) || 0,
+        originalPrice: form.originalPrice ? parseInt(form.originalPrice) : null,
+        image: form.imageSlots[0].trim(),
+        images: JSON.stringify(extra),
+        categoryId: form.categoryId ? parseInt(form.categoryId) : null,
+        badge: form.badge.trim() || null,
+        stock: parseInt(form.stock) || 0,
+        rating: parseFloat(form.rating) || 0,
+        reviews: parseInt(form.reviews) || 0,
+        featured: form.featured,
+      };
+      let res;
+      if (modal.editing) {
+        res = await fetch(`/api/products/${modal.editing.id}`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+        });
+      } else {
+        res = await fetch('/api/products', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, active: true }),
+        });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Server error ${res.status}`);
+      }
+      closeModal();
+      load();
+    } catch (err) {
+      alert('Failed to save: ' + (err instanceof Error ? err.message : 'Unknown error'));
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    closeModal();
-    load();
   }
 
   async function remove(id: number) {
