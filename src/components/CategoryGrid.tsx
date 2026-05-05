@@ -43,21 +43,28 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-5">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
           {categories.map(cat => (
             <Link
               key={cat.slug}
               href={`/shop?category=${cat.slug}`}
               className="flex flex-col items-center gap-2 group"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gray-100 flex items-center justify-center text-2xl group-hover:bg-gray-200 group-hover:shadow-md transition-all duration-200 overflow-hidden">
+              <div className="w-full aspect-square rounded-2xl bg-gray-100 flex items-center justify-center overflow-hidden group-hover:shadow-md group-hover:bg-gray-200 transition-all duration-200">
                 {cat.icon?.startsWith('/') || cat.icon?.startsWith('http') ? (
-                  <Image src={cat.icon} alt={cat.name} width={80} height={80} className="object-cover w-full h-full" unoptimized />
+                  <Image
+                    src={cat.icon}
+                    alt={cat.name}
+                    width={160}
+                    height={160}
+                    className="object-contain w-full h-full p-3"
+                    unoptimized
+                  />
                 ) : cat.svgKey ? svgIcons[cat.svgKey] : (
-                  <span>{cat.icon}</span>
+                  <span className="text-3xl">{cat.icon}</span>
                 )}
               </div>
-              <span className="text-[11px] sm:text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-green-600 transition-colors">
+              <span className="text-[11px] sm:text-xs font-semibold text-gray-700 text-center leading-tight group-hover:text-green-600 transition-colors">
                 {cat.name}
               </span>
             </Link>
