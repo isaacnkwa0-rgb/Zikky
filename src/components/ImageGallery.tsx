@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Props {
   main: string;
@@ -11,6 +12,9 @@ interface Props {
 export default function ImageGallery({ main, extra, name }: Props) {
   const all = [main, ...extra].filter(Boolean);
   const [selected, setSelected] = useState(0);
+
+  function prev() { setSelected(i => (i === 0 ? all.length - 1 : i - 1)); }
+  function next() { setSelected(i => (i === all.length - 1 ? 0 : i + 1)); }
 
   return (
     <div className="flex flex-col gap-3">
@@ -28,9 +32,29 @@ export default function ImageGallery({ main, extra, name }: Props) {
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-200 text-8xl">📦</div>
         )}
+
+        {/* Side arrows — only when multiple images */}
+        {all.length > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-all"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={20} className="text-gray-700" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-all"
+              aria-label="Next image"
+            >
+              <ChevronRight size={20} className="text-gray-700" />
+            </button>
+          </>
+        )}
       </div>
 
-      {/* Thumbnail strip — only shown when there are multiple images */}
+      {/* Thumbnail strip */}
       {all.length > 1 && (
         <div className="flex gap-2">
           {all.map((src, i) => (
