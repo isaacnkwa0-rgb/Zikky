@@ -98,6 +98,7 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
                 </div>
                 <AddToCartButton
                   product={{ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, stock: product.stock }}
+                  color="#52BD4A"
                 />
               </div>
             </Link>

@@ -180,7 +180,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                       )}
                     </div>
                     <div className="mt-auto">
-                      <AddToCartButton product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }} />
+                      <AddToCartButton product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }} color="#52BD4A" />
                     </div>
                   </div>
                 </div>

@@ -15,9 +15,10 @@ interface Props {
   };
   className?: string;
   iconOnly?: boolean;
+  color?: string;
 }
 
-export default function AddToCartButton({ product, className, iconOnly }: Props) {
+export default function AddToCartButton({ product, className, iconOnly, color = '#00C5DC' }: Props) {
   const { addItem } = useCartStore();
   const [added, setAdded] = useState(false);
 
@@ -46,7 +47,7 @@ export default function AddToCartButton({ product, className, iconOnly }: Props)
         onClick={handleAdd}
         disabled={product.stock === 0}
         className={`p-2 rounded-xl text-white flex-shrink-0 disabled:opacity-40 transition-colors ${className ?? ''}`}
-        style={{ background: added ? '#52BD4A' : '#00C5DC' }}
+        style={{ background: added ? '#52BD4A' : color }}
         aria-label="Add to cart"
       >
         {added ? <Check size={14} /> : <ShoppingCart size={14} />}
@@ -59,7 +60,7 @@ export default function AddToCartButton({ product, className, iconOnly }: Props)
       onClick={handleAdd}
       disabled={product.stock === 0}
       className={`w-full py-3.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${className ?? ''}`}
-      style={{ background: added ? '#52BD4A' : '#00C5DC' }}
+      style={{ background: added ? '#52BD4A' : color }}
     >
       {added ? <><Check size={18} /> Added!</> : <><ShoppingCart size={18} /> Add to Cart</>}
     </button>
