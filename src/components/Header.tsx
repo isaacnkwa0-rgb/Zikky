@@ -126,7 +126,7 @@ export default function Header() {
         </div>
 
         {/* Mobile search */}
-        <div className="sm:hidden px-4 pb-3 mb-5">
+        <div className="sm:hidden px-4 pb-3 mb-10">
           <form onSubmit={handleSearch} className="flex items-center border border-gray-300 rounded-md overflow-hidden bg-gray-50">
             <input
               type="text"
