@@ -35,8 +35,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const related = product.categoryId
-    ? (await getProducts({ categorySlug: product.category?.slug, limit: 5 })).filter(p => p.id !== product.id).slice(0, 4)
-    : [];
+    ? (await getProducts({ categorySlug: product.category?.slug, limit: 9 })).filter(p => p.id !== product.id).slice(0, 8)
+    : (await getProducts({ limit: 9 })).filter(p => p.id !== product.id).slice(0, 8);
 
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
@@ -150,20 +150,40 @@ export default async function ProductPage({ params }: { params: { slug: string }
         {/* Related products */}
         {related.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-xl font-bold text-gray-800 mb-5">More in {product.category?.name}</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <h2 className="text-xl font-bold text-gray-800 text-center mb-1">
+              {product.category ? `More in ${product.category.name}` : 'You May Also Like'}
+            </h2>
+            <p className="text-sm text-gray-400 text-center mb-6">Products you might be interested in</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {related.map(p => (
-                <Link key={p.id} href={`/products/${p.slug}`} className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="relative aspect-square bg-gray-50 overflow-hidden">
-                    {p.image && (
-                      <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
-                    )}
+                <div key={p.id} className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                  <Link href={`/products/${p.slug}`} className="group">
+                    <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                      {p.image && (
+                        <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
+                      )}
+                      {p.badge && (
+                        <span className="absolute top-2 left-2 text-[9px] font-bold text-white px-1.5 py-0.5 rounded" style={{ background: '#00C5DC' }}>
+                          {p.badge}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                  <div className="p-3 flex flex-col gap-2 flex-1">
+                    <Link href={`/products/${p.slug}`}>
+                      <p className="text-sm font-semibold text-gray-800 line-clamp-2 text-center">{p.name}</p>
+                    </Link>
+                    <div className="text-center">
+                      <p className="text-base font-extrabold text-gray-900">{fmt(p.price)}</p>
+                      {p.originalPrice && (
+                        <p className="text-xs text-gray-400 line-through">{fmt(p.originalPrice)}</p>
+                      )}
+                    </div>
+                    <div className="mt-auto">
+                      <AddToCartButton product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }} />
+                    </div>
                   </div>
-                  <div className="p-3">
-                    <p className="text-sm font-semibold text-gray-800 line-clamp-2">{p.name}</p>
-                    <p className="text-base font-extrabold text-gray-900 mt-1">{fmt(p.price)}</p>
-                  </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
