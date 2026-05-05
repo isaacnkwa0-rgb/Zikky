@@ -46,7 +46,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${searchParams.category === c.slug ? 'text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-cyan-400'}`}
               style={searchParams.category === c.slug ? { background: '#00C5DC' } : {}}
             >
-              {c.icon && <span className="mr-1">{c.icon}</span>}{c.name}
+              {c.name}
             </Link>
           ))}
         </div>
