@@ -57,7 +57,7 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
                     alt={cat.name}
                     width={160}
                     height={160}
-                    className="object-contain w-full h-full p-3"
+                    className="object-contain w-full h-full p-5"
                     unoptimized
                   />
                 ) : cat.svgKey ? svgIcons[cat.svgKey] : (
