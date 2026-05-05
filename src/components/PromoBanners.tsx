@@ -65,7 +65,7 @@ export default function PromoBanners({ banners: bannersProp }: { banners?: Banne
             <div className="absolute inset-x-0 bottom-0 z-20 p-5 md:p-6 flex flex-col items-center text-center">
               <h3 className="text-white font-extrabold text-sm md:text-base leading-snug mb-1 drop-shadow">{b.title}</h3>
               <p className="text-white/75 text-xs leading-relaxed mb-3">{b.sub}</p>
-              <span className="inline-flex items-center gap-1 bg-white text-gray-900 text-xs font-bold px-4 py-1.5 rounded-md group-hover:bg-gray-100 transition-colors">
+              <span className="inline-flex items-center gap-1 text-white text-xs font-bold px-4 py-1.5 rounded-md transition-colors" style={{ background: '#52BD4A' }}>
                 {b.cta} →
               </span>
             </div>
