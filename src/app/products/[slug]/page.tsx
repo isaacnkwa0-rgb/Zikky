@@ -169,17 +169,18 @@ export default async function ProductPage({ params }: { params: { slug: string }
                       )}
                     </div>
                   </Link>
-                  <div className="p-3 flex flex-col gap-2 flex-1">
+                  <div className="p-3 flex flex-col flex-1">
                     <Link href={`/products/${p.slug}`}>
                       <p className="text-sm font-semibold text-gray-800 line-clamp-2 text-center">{p.name}</p>
                     </Link>
-                    <div className="text-center">
+                    <div className="flex-1" />
+                    <div className="text-center mt-1">
                       <p className="text-base font-extrabold text-gray-900">{fmt(p.price)}</p>
                       {p.originalPrice && (
                         <p className="text-xs text-gray-400 line-through">{fmt(p.originalPrice)}</p>
                       )}
                     </div>
-                    <div className="mt-auto">
+                    <div className="mt-2">
                       <AddToCartButton product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }} color="#52BD4A" />
                     </div>
                   </div>

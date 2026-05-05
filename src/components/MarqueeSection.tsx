@@ -82,11 +82,12 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
                 )}
               </div>
 
-              <div className="p-2.5 flex flex-col gap-1.5 flex-1">
-                <p className="text-[11px] font-semibold text-gray-800 leading-snug line-clamp-2 text-center flex-1">
+              <div className="p-2.5 flex flex-col flex-1">
+                <p className="text-[11px] font-semibold text-gray-800 leading-snug line-clamp-2 text-center">
                   {product.name}
                 </p>
-                <div className="flex flex-col items-center gap-0.5">
+                <div className="flex-1" />
+                <div className="flex flex-col items-center gap-0.5 mt-1">
                   <span className="text-xs font-bold text-gray-900">
                     ₦{product.price.toLocaleString('en-NG')}
                   </span>
@@ -96,10 +97,12 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
                     </span>
                   )}
                 </div>
-                <AddToCartButton
-                  product={{ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, stock: product.stock }}
-                  color="#52BD4A"
-                />
+                <div className="mt-2">
+                  <AddToCartButton
+                    product={{ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, stock: product.stock }}
+                    color="#52BD4A"
+                  />
+                </div>
               </div>
             </Link>
           ))}

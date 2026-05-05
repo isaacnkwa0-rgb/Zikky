@@ -75,23 +75,24 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
                     )}
                   </div>
                 </Link>
-                <div className="p-3 flex flex-col gap-1.5 flex-1">
+                <div className="p-3 flex flex-col flex-1">
                   <Link href={`/products/${p.slug}`}>
-                    <p className="text-sm font-semibold text-gray-800 line-clamp-2 text-center flex-1">{p.name}</p>
+                    <p className="text-sm font-semibold text-gray-800 line-clamp-2 text-center">{p.name}</p>
                   </Link>
                   {p.rating > 0 && (
-                    <div className="flex items-center justify-center gap-1">
+                    <div className="flex items-center justify-center gap-1 mt-1">
                       <Star size={11} className="fill-yellow-400 text-yellow-400" />
                       <span className="text-xs text-gray-500">{p.rating.toFixed(1)} ({p.reviews})</span>
                     </div>
                   )}
-                  <div className="flex flex-col items-center gap-0.5">
+                  <div className="flex-1" />
+                  <div className="flex flex-col items-center gap-0.5 mt-1">
                     <p className="text-base font-extrabold text-gray-900">{fmt(p.price)}</p>
                     {p.originalPrice && (
                       <p className="text-xs text-gray-400 line-through">{fmt(p.originalPrice)}</p>
                     )}
                   </div>
-                  <div className="mt-auto">
+                  <div className="mt-2">
                     <AddToCartButton
                       product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }}
                       color="#52BD4A"
