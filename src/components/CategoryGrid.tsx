@@ -50,7 +50,7 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
               href={`/shop?category=${cat.slug}`}
               className="flex flex-col items-center gap-2 group"
             >
-              <div className="w-full aspect-square rounded-2xl bg-gray-100 flex items-center justify-center overflow-hidden group-hover:shadow-md group-hover:bg-gray-200 transition-all duration-200">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden group-hover:shadow-md group-hover:bg-gray-200 transition-all duration-200">
                 {cat.icon?.startsWith('/') || cat.icon?.startsWith('http') ? (
                   <Image
                     src={cat.icon}
