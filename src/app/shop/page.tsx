@@ -60,44 +60,45 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {allProducts.map(p => (
-              <Link key={p.id} href={`/products/${p.slug}`} className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
-                <div className="relative aspect-square bg-gray-50 overflow-hidden">
-                  {p.image ? (
-                    <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-200 text-4xl">📦</div>
-                  )}
-                  {p.badge && (
-                    <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ background: '#00C5DC' }}>
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-                <div className="p-3 flex flex-col flex-1">
-                  <p className="text-xs text-gray-400 mb-0.5">{p.category?.name}</p>
-                  <p className="text-sm font-semibold text-gray-800 line-clamp-2 flex-1">{p.name}</p>
-                  <div className="mt-2">
-                    {p.rating > 0 && (
-                      <div className="flex items-center gap-1 mb-1">
-                        <Star size={11} className="fill-yellow-400 text-yellow-400" />
-                        <span className="text-xs text-gray-500">{p.rating.toFixed(1)} ({p.reviews})</span>
-                      </div>
+              <div key={p.id} className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                <Link href={`/products/${p.slug}`} className="group">
+                  <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                    {p.image ? (
+                      <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-200 text-4xl">📦</div>
                     )}
-                    <div className="flex items-end gap-2 justify-between">
-                      <div>
-                        <p className="text-base font-extrabold text-gray-900">{fmt(p.price)}</p>
-                        {p.originalPrice && (
-                          <p className="text-xs text-gray-400 line-through">{fmt(p.originalPrice)}</p>
-                        )}
-                      </div>
-                      <AddToCartButton
-                        product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }}
-                        iconOnly
-                      />
+                    {p.badge && (
+                      <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ background: '#00C5DC' }}>
+                        {p.badge}
+                      </span>
+                    )}
+                  </div>
+                </Link>
+                <div className="p-3 flex flex-col gap-1.5 flex-1">
+                  <Link href={`/products/${p.slug}`}>
+                    <p className="text-sm font-semibold text-gray-800 line-clamp-2 text-center flex-1">{p.name}</p>
+                  </Link>
+                  {p.rating > 0 && (
+                    <div className="flex items-center justify-center gap-1">
+                      <Star size={11} className="fill-yellow-400 text-yellow-400" />
+                      <span className="text-xs text-gray-500">{p.rating.toFixed(1)} ({p.reviews})</span>
                     </div>
+                  )}
+                  <div className="flex flex-col items-center gap-0.5">
+                    <p className="text-base font-extrabold text-gray-900">{fmt(p.price)}</p>
+                    {p.originalPrice && (
+                      <p className="text-xs text-gray-400 line-through">{fmt(p.originalPrice)}</p>
+                    )}
+                  </div>
+                  <div className="mt-auto">
+                    <AddToCartButton
+                      product={{ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image, stock: p.stock }}
+                      color="#52BD4A"
+                    />
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         )}
