@@ -82,26 +82,23 @@ export default function MarqueeSection({ title, products, viewAllHref = '/shop' 
                 )}
               </div>
 
-              <div className="p-2.5 flex flex-col gap-1 flex-1">
-                <p className="text-[11px] font-semibold text-gray-800 leading-snug line-clamp-2 flex-1">
+              <div className="p-2.5 flex flex-col gap-1.5 flex-1">
+                <p className="text-[11px] font-semibold text-gray-800 leading-snug line-clamp-2 text-center flex-1">
                   {product.name}
                 </p>
-                <div className="flex items-center justify-between gap-1 mt-1">
-                  <div>
-                    <span className="text-xs font-bold text-gray-900">
-                      ₦{product.price.toLocaleString('en-NG')}
+                <div className="flex flex-col items-center gap-0.5">
+                  <span className="text-xs font-bold text-gray-900">
+                    ₦{product.price.toLocaleString('en-NG')}
+                  </span>
+                  {product.originalPrice && (
+                    <span className="text-[10px] text-gray-400 line-through">
+                      ₦{product.originalPrice.toLocaleString('en-NG')}
                     </span>
-                    {product.originalPrice && (
-                      <span className="block text-[10px] text-gray-400 line-through">
-                        ₦{product.originalPrice.toLocaleString('en-NG')}
-                      </span>
-                    )}
-                  </div>
-                  <AddToCartButton
-                    product={{ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, stock: product.stock }}
-                    iconOnly
-                  />
+                  )}
                 </div>
+                <AddToCartButton
+                  product={{ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, stock: product.stock }}
+                />
               </div>
             </Link>
           ))}
