@@ -1,5 +1,5 @@
 'use client';
-import { Search, Phone, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, Phone, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -80,12 +80,6 @@ export default function Header() {
                 <p className="text-sm font-bold text-gray-800">09033723931</p>
               </div>
             </a>
-            <Link href="/account" className="text-gray-500 hover:text-gray-800 transition-colors">
-              <User size={22} strokeWidth={1.5} />
-            </Link>
-            <Link href="/wishlist" className="text-gray-500 hover:text-gray-800 transition-colors">
-              <Heart size={22} strokeWidth={1.5} />
-            </Link>
             <button
               onClick={openCart}
               className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
