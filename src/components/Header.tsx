@@ -100,8 +100,8 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile search (sm only, not md+) */}
-          <form onSubmit={handleSearch} className="sm:flex md:hidden flex-1 items-center rounded-md overflow-hidden border border-gray-300 focus-within:border-gray-400 transition-colors hidden" style={{ marginLeft: '8px' }}>
+          {/* Tablet inline search (sm only) */}
+          <form onSubmit={handleSearch} className="hidden sm:flex md:hidden flex-1 items-center rounded-md overflow-hidden border border-gray-300 focus-within:border-gray-400 transition-colors" style={{ marginLeft: '8px' }}>
             <input
               type="text"
               placeholder="Search…"
@@ -115,7 +115,7 @@ export default function Header() {
           </form>
 
           {/* Mobile: cart + hamburger */}
-          <div className="md:hidden flex-1 flex items-center justify-end gap-4">
+          <div className="md:hidden flex items-center justify-end gap-4 ml-auto">
             <button onClick={openCart} className="relative text-gray-700">
               <ShoppingCart size={22} strokeWidth={1.5} />
               {cartCount > 0 && (
