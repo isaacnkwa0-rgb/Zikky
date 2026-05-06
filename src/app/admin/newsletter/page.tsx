@@ -57,7 +57,7 @@ export default function NewsletterPage() {
         setSubject('');
         setBody('');
       } else {
-        setResult({ ok: false, msg: data.error ?? 'Failed to send' });
+        setResult({ ok: false, msg: data.error ?? 'Unknown error' });
       }
     } catch {
       setResult({ ok: false, msg: 'Network error. Try again.' });
