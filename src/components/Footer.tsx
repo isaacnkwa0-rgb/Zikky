@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import NewsletterForm from './NewsletterForm';
 
 const support = [
   { label: 'Contact Us', href: '/pages/contact' },
@@ -58,25 +59,7 @@ export default function Footer() {
             </div>
 
             {/* Right form panel */}
-            <form
-              className="flex flex-col sm:flex-row items-center gap-3 flex-1 px-6 py-6 sm:px-8"
-              style={{ background: '#f0fdf4', borderTop: '3px solid #52BD4A' }}
-              action="#"
-            >
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full sm:flex-1 text-sm text-gray-700 outline-none rounded-lg"
-                style={{ border: '1.5px solid #e5e7eb', background: '#fff', height: '48px', padding: '0 16px' }}
-              />
-              <button
-                type="submit"
-                className="w-full sm:w-auto flex-shrink-0 text-sm font-bold text-white rounded-lg hover:opacity-90 transition-opacity"
-                style={{ background: '#52BD4A', height: '44px', padding: '0 28px' }}
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>

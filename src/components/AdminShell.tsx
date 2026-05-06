@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Image as ImageIcon, LayoutGrid, Tag, Package, ShoppingBag, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Image as ImageIcon, LayoutGrid, Tag, Package, ShoppingBag, Mail, LogOut, Menu, X } from 'lucide-react';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -13,6 +13,7 @@ const navItems = [
   { href: '/admin/hero', label: 'Hero Slides', icon: ImageIcon },
   { href: '/admin/banners', label: 'Promo Banners', icon: LayoutGrid },
   { href: '/admin/categories', label: 'Categories', icon: Tag },
+  { href: '/admin/newsletter', label: 'Newsletter', icon: Mail },
 ];
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {

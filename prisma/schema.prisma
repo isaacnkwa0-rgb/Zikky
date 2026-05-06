@@ -82,6 +82,12 @@ model OrderItem {
   image     String @default("")
 }
 
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 model Product {
   id            Int       @id @default(autoincrement())
   name          String
