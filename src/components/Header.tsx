@@ -57,47 +57,62 @@ export default function Header() {
             />
           </Link>
 
-          {/* Search */}
-          <form onSubmit={handleSearch} className="hidden sm:flex flex-1 items-center rounded-md overflow-hidden border border-gray-300 focus-within:border-gray-400 transition-colors" style={{ maxWidth: '520px', marginLeft: '12px' }}>
+          {/* Desktop: search + right icons */}
+          <div className="hidden md:flex flex-1 items-center gap-5 ml-3">
+            <form onSubmit={handleSearch} className="flex flex-1 items-center rounded-md overflow-hidden border border-gray-300 focus-within:border-gray-400 transition-colors" style={{ maxWidth: '520px' }}>
+              <input
+                type="text"
+                placeholder="Search for products or brands…"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                className="flex-1 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-gray-50"
+              />
+              <button type="submit" className="flex-shrink-0 px-3 py-3 text-white transition-colors" style={{ background: '#52BD4A' }}>
+                <Search size={16} />
+              </button>
+            </form>
+
+            <div className="flex items-center gap-5 ml-auto">
+              <a href="tel:09033723931" className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
+                <Phone size={18} className="text-gray-400 flex-shrink-0" />
+                <div className="leading-tight">
+                  <p className="text-[10px] text-gray-400 font-medium">Need help?</p>
+                  <p className="text-sm font-bold text-gray-800">09033723931</p>
+                </div>
+              </a>
+              <button
+                onClick={openCart}
+                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                <div className="relative">
+                  <ShoppingCart size={22} strokeWidth={1.5} />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-white text-[9px] font-bold flex items-center justify-center leading-none" style={{ background: '#00C5DC' }}>
+                      {cartCount > 9 ? '9+' : cartCount}
+                    </span>
+                  )}
+                </div>
+                <div className="leading-tight">
+                  <p className="text-[10px] text-gray-400">Basket</p>
+                  <p className="text-sm font-bold">{fmt(cartTotal)}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile search (sm only, not md+) */}
+          <form onSubmit={handleSearch} className="sm:flex md:hidden flex-1 items-center rounded-md overflow-hidden border border-gray-300 focus-within:border-gray-400 transition-colors hidden" style={{ marginLeft: '8px' }}>
             <input
               type="text"
-              placeholder="Search for products or brands…"
+              placeholder="Search…"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              className="flex-1 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-gray-50"
+              className="flex-1 px-3 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none bg-gray-50"
             />
             <button type="submit" className="flex-shrink-0 px-3 py-3 text-white transition-colors" style={{ background: '#52BD4A' }}>
-              <Search size={16} />
+              <Search size={15} />
             </button>
           </form>
-
-          {/* Desktop right icons */}
-          <div className="hidden md:flex items-center gap-5 ml-auto">
-            <a href="tel:09033723931" className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
-              <Phone size={18} className="text-gray-400 flex-shrink-0" />
-              <div className="leading-tight">
-                <p className="text-[10px] text-gray-400 font-medium">Need help?</p>
-                <p className="text-sm font-bold text-gray-800">09033723931</p>
-              </div>
-            </a>
-            <button
-              onClick={openCart}
-              className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <div className="relative">
-                <ShoppingCart size={22} strokeWidth={1.5} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-white text-[9px] font-bold flex items-center justify-center leading-none" style={{ background: '#00C5DC' }}>
-                    {cartCount > 9 ? '9+' : cartCount}
-                  </span>
-                )}
-              </div>
-              <div className="leading-tight">
-                <p className="text-[10px] text-gray-400">Basket</p>
-                <p className="text-sm font-bold">{fmt(cartTotal)}</p>
-              </div>
-            </button>
-          </div>
 
           {/* Mobile: cart + hamburger */}
           <div className="md:hidden flex-1 flex items-center justify-end gap-4">
