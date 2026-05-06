@@ -115,7 +115,7 @@ export default function Header() {
           </form>
 
           {/* Mobile: cart + hamburger */}
-          <div className="md:hidden flex items-center justify-end gap-4 ml-auto">
+          <div className="md:hidden flex-1 flex items-center justify-end gap-4">
             <button onClick={openCart} className="relative text-gray-700">
               <ShoppingCart size={22} strokeWidth={1.5} />
               {cartCount > 0 && (
